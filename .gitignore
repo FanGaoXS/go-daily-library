@@ -1,6 +1,8 @@
-
+## ide
 .idea
 *.iws
 *.iml
 *.ipr
 
+## MacOS
+.DS_Store
