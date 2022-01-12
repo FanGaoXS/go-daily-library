@@ -2,6 +2,7 @@ package number
 
 import "math"
 
+// Max 返回两数中较大的数
 func Max(a, b int) int {
 	if a >= b {
 		return a
@@ -9,6 +10,7 @@ func Max(a, b int) int {
 	return b
 }
 
+// Min 返回两数中较小的数
 func Min(a, b int) int {
 	if a <= b {
 		return a
@@ -16,6 +18,7 @@ func Min(a, b int) int {
 	return b
 }
 
+// MaxFromMultiple 从列表中返回较大的数
 func MaxFromMultiple(nums ...int) int {
 	max := math.MinInt
 	for _, num := range nums {
@@ -26,16 +29,18 @@ func MaxFromMultiple(nums ...int) int {
 	return max
 }
 
+// MinFromMultiple 从列表中返回较小的数
 func MinFromMultiple(nums ...int) int {
 	min := math.MaxInt
 	for _, num := range nums {
 		if num < min {
-			num = min
+			min = num
 		}
 	}
 	return min
 }
 
+// Sort 从小到大排序
 func Sort(nums ...int) []int {
 	if len(nums) == 1 {
 		return nums
@@ -43,7 +48,7 @@ func Sort(nums ...int) []int {
 	return bubbleSort(nums)
 }
 
-// Sort 冒泡排序
+// 冒泡排序
 func bubbleSort(nums []int) []int {
 	length := len(nums)
 	flag := true // 优化
