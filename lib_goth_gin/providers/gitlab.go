@@ -5,8 +5,8 @@ import "github.com/markbates/goth/providers/gitlab"
 // https://gitlab.com/oauth/applications/ to get clientId...
 
 func NewGitlabProvider() *gitlab.Provider {
-	clientId := "fc2d410be64f6af61b47fb81b40c0e7ddaee9f227f9ebbcea36363bd1c1583eb"
-	clientSecrets := "040a92904ad45511b380d23b7df973dbc52cc4eef3cee947a9ac9d0da46f1ac5"
+	clientId := "09cb4ef656412ea42a934e1f5582836dd18119711221990024ba80ff352d210e"
+	clientSecrets := "1682c88cacc66cee7e3b8b7ca5fe2cfde1c880156383f8b2ff519bac0ffcea70"
 	authCallbackUrl := "http://localhost:9090/auth/callback/gitlab"
 	return gitlab.New(clientId, clientSecrets, authCallbackUrl)
 }
