@@ -118,6 +118,7 @@ func TestSort(t *testing.T) {
 		{args: args{nums: []int{1, 7, math.MinInt, 8, 9}}, want: []int{math.MinInt, 1, 7, 8, 9}},
 		{args: args{nums: []int{1, 7, math.MaxInt64, 8, 9}}, want: []int{1, 7, 8, 9, math.MaxInt64}},
 		{args: args{nums: []int{1, 7, math.MinInt64, 8, 9}}, want: []int{math.MinInt64, 1, 7, 8, 9}},
+		{args: args{nums: []int{1}}, want: []int{1}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -142,6 +143,7 @@ func Test_bubbleSort(t *testing.T) {
 		{args: args{nums: []int{1, 7, math.MinInt, 8, 9}}, want: []int{math.MinInt, 1, 7, 8, 9}},
 		{args: args{nums: []int{1, 7, math.MaxInt64, 8, 9}}, want: []int{1, 7, 8, 9, math.MaxInt64}},
 		{args: args{nums: []int{1, 7, math.MinInt64, 8, 9}}, want: []int{math.MinInt64, 1, 7, 8, 9}},
+		{args: args{nums: []int{1, 3, 5, 7, 9}}, want: []int{1, 3, 5, 7, 9}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
