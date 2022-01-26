@@ -1,6 +1,6 @@
 package routers
 
-import "daily_library/lib_goth_gin/controller"
+import "lib_goth_gin/controller"
 
 func AuthRouters() {
 	group := r.Group("/auth")

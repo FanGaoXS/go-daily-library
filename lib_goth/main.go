@@ -1,9 +1,9 @@
 package main
 
 import (
-	"daily_library/lib_goth/handlers"
-	"daily_library/lib_goth/providers"
 	"github.com/gorilla/mux"
+	"lib_goth/handlers"
+	"lib_goth/providers"
 	"log"
 	"net/http"
 )

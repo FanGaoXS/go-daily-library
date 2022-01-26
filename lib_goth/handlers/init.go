@@ -8,5 +8,5 @@ var (
 
 func Init() {
 	// 读取templates下的模板文件
-	ptTemplate = template.Must(template.New("").ParseGlob("lib_goth/templates/*.tpl"))
+	ptTemplate = template.Must(template.New("").ParseGlob("templates/*.tpl"))
 }
