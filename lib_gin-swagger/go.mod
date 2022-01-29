@@ -1,4 +1,4 @@
-module lib_gin_swagger
+module lib_gin-swagger
 
 go 1.17
 
