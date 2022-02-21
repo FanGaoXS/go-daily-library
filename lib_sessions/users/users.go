@@ -1,4 +1,4 @@
-package main
+package info
 
 import (
 	"github.com/gorilla/securecookie"
@@ -20,7 +20,7 @@ type User struct {
 	Age  int
 }
 
-func SetSession(r *http.Request, user *User) {
+func SetUser(r *http.Request, user *User) {
 	session, err := store.Get(r, SessionKey)
 	if err != nil {
 		log.Fatal("set session error: ", err)
@@ -28,7 +28,7 @@ func SetSession(r *http.Request, user *User) {
 	session.Values["user"] = user
 }
 
-func GetSession(r *http.Request) *User {
+func GetUser(r *http.Request) *User {
 	session, err := store.Get(r, SessionKey)
 	if err != nil {
 		log.Fatal("get session error: ", err)
