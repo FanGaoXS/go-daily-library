@@ -1,10 +1,11 @@
-package info
+package users
 
 import (
 	"github.com/gorilla/securecookie"
 	"github.com/gorilla/sessions"
 	"log"
 	"net/http"
+	"reflect"
 )
 
 var (
@@ -18,6 +19,16 @@ const (
 type User struct {
 	Name string
 	Age  int
+}
+
+func fields() []string {
+	var fields []string
+	types := reflect.TypeOf(&User{})
+	for i := 0; i < types.NumField(); i++ {
+		field := types.Field(i)
+		fields = append(fields, field.Name)
+	}
+	return fields
 }
 
 func SetUser(r *http.Request, user *User) {

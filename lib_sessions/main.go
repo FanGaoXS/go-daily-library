@@ -12,8 +12,8 @@ const (
 
 func main() {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/set", Set)
-	mux.HandleFunc("/get", Get)
+	mux.HandleFunc("/setUser", setUserHandler)
+	mux.HandleFunc("/getUser", getUserHandler)
 	server := &http.Server{
 		Addr:         Port,
 		Handler:      mux,
