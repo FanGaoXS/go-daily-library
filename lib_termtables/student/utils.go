@@ -2,13 +2,9 @@ package main
 
 import "reflect"
 
-type Student struct {
-	Name string
-	Age  int
-}
-
-func Fields(obj interface{}) []string {
-	var fieldsName []string
+// Fields get fieldsName of struct
+func Fields(obj interface{}) []interface{} {
+	var fieldsName []interface{}
 	typeOf := reflect.TypeOf(obj)
 	for i := 0; i < typeOf.NumField(); i++ {
 		field := typeOf.Field(i)
@@ -17,6 +13,7 @@ func Fields(obj interface{}) []string {
 	return fieldsName
 }
 
+// Values get fieldsValue of struct
 func Values(obj interface{}) []interface{} {
 	var fieldsValue []interface{}
 	valueOf := reflect.ValueOf(obj)
@@ -27,6 +24,7 @@ func Values(obj interface{}) []interface{} {
 	return fieldsValue
 }
 
+// ToMap get fields as key-value
 func ToMap(obj interface{}) map[string]interface{} {
 	fieldsMap := make(map[string]interface{})
 	typeOf := reflect.TypeOf(obj)
