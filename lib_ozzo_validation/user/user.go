@@ -11,7 +11,8 @@ type User struct {
 	Email string
 }
 
-func (u *User) validate() error {
+// Validate validate user struct
+func (u *User) Validate() error {
 	return validation.ValidateStruct(u,
 		validation.Field(&u.Name, validation.Required),
 		validation.Field(&u.Age, validation.Required, validation.Min(1), validation.Max(100)),
