@@ -1,7 +1,7 @@
 package main
 
-import "lib_cobra/cmd"
+import "lib_cobra/commond"
 
 func main() {
-	cmd.Execute()
+	commond.Execute()
 }

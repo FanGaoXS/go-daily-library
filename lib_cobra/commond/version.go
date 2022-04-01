@@ -1,9 +1,10 @@
-package cmd
+package commond
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"os"
+
+	"github.com/spf13/cobra"
 )
 
 var versionCmd = &cobra.Command{
@@ -22,5 +23,5 @@ var versionCmd = &cobra.Command{
 
 func init() {
 	// 初始化时将versionCmd加入rootCmd
-	rootCmd.AddCommand(versionCmd)
+	RootCmd.AddCommand(versionCmd)
 }

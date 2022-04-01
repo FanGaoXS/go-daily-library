@@ -1,4 +1,4 @@
-package cmd
+package commond
 
 import (
 	"errors"
@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var rootCmd = &cobra.Command{
+var RootCmd = &cobra.Command{
 	// 根命令
 	Use: "git",
 	// 短描述
@@ -22,5 +22,5 @@ with speed and efficiency.`,
 }
 
 func Execute() {
-	rootCmd.Execute()
+	RootCmd.Execute()
 }
