@@ -53,7 +53,7 @@ func (m *model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m model) View() string {
-	str := "todo：\n\n"
+	str := "todo：\n"
 	for i, todo := range m.todos {
 		cursorStr := " "
 		selectedStr := " "
@@ -65,7 +65,7 @@ func (m model) View() string {
 		}
 		str += fmt.Sprintf("%s [%s] %s\n", cursorStr, selectedStr, todo)
 	}
-	return str
+	return str + "\n"
 }
 
 func NewModel(todos []string) *model {
