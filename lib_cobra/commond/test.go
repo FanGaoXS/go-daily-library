@@ -8,8 +8,8 @@ import (
 )
 
 var testCmd = &cobra.Command{
-	Use:   "test",
-	Short: "version test",
+	Use:   "test1",
+	Short: "version test1",
 	Run: func(cmd *cobra.Command, args []string) {
 		// 执行命令
 		output, err := ExecuteCommand("git", "version", args...)

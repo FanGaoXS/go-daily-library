@@ -7,7 +7,7 @@ import (
 
 func main() {
 	u1 := &User{
-		Name:  "test",
+		Name:  "test1",
 		Age:   100,
 		Email: "954278478@qq.com",
 	}
@@ -16,7 +16,7 @@ func main() {
 	fmt.Println("err =", validation.Validate(u1, validation.NotNil))
 
 	u2 := &User{
-		Name:  "test",
+		Name:  "test1",
 		Age:   150,
 		Email: "954278478@qq.com",
 	}

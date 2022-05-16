@@ -10,7 +10,7 @@ import (
 func main() {
 	viper.SetConfigType("toml")
 	tomlConfig := []byte(`
-app_name = "test web"
+app_name = "test1 web"
 
 log_level = "DEBUG"
 

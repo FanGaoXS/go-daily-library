@@ -38,7 +38,7 @@ func UserLogin(c *gin.Context) {
 func UserLogout(c *gin.Context) {
 	username := c.Query("username")
 	flag := false
-	if username == "test" {
+	if username == "test1" {
 		flag = true
 	}
 	c.JSON(http.StatusOK, response.New().SetMessage(username+" logout").SetData(flag))
