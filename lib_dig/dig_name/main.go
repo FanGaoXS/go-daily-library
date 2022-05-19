@@ -13,7 +13,7 @@ func initUser(name string, age int) func() *model.User {
 	}
 }
 
-type UsersInParam struct {
+type UsersInArg struct {
 	dig.In
 
 	// 指定名称来使用
@@ -21,9 +21,9 @@ type UsersInParam struct {
 	U2 *model.User `name:"u2"`
 }
 
-func PrintUsers(param UsersInParam) {
-	fmt.Printf("user1 = %#v\n", param.U1)
-	fmt.Printf("user2 = %#v\n", param.U2)
+func PrintUsers(arg UsersInArg) {
+	fmt.Printf("user1 = %#v\n", arg.U1)
+	fmt.Printf("user2 = %#v\n", arg.U2)
 }
 
 func main() {

@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
-
 	"github.com/jessevdk/go-flags"
 	"github.com/joho/godotenv"
 	"go.uber.org/dig"
@@ -30,6 +28,18 @@ type EnvOption struct {
 	AppVersion string
 }
 
+type App struct {
+	Name    string
+	Version string
+}
+
+func InitApp(opt *EnvOption) *App {
+	return &App{
+		Name:    opt.AppName,
+		Version: opt.AppVersion,
+	}
+}
+
 func InitEnv(opt *Option) (*EnvOption, error) {
 	envMap, err := godotenv.Read(opt.EnvFile)
 	if err != nil {
@@ -43,8 +53,12 @@ func InitEnv(opt *Option) (*EnvOption, error) {
 	}, nil
 }
 
-func PrintEnvOption(opt *EnvOption) {
-	fmt.Printf("env_option = %#v\n", opt)
+func printEnvOption(envOpt *EnvOption) {
+	fmt.Printf("env_option = %#v\n", envOpt)
+}
+
+func printApp(app *App) {
+	fmt.Printf("app = %#v\n", app)
 }
 
 func main() {
@@ -52,25 +66,22 @@ func main() {
 	container := dig.New()
 
 	// 2, 将对象的构造函数provide
-	err := container.Provide(InitOption)
-	if err != nil {
-		log.Fatalln("provide InitOptions err")
-	}
-	err = container.Provide(InitEnv)
-	if err != nil {
-		log.Fatalln("provide InitEnv err")
-	}
+	container.Provide(InitOption)
+	container.Provide(InitEnv)
+	container.Provide(InitApp)
 
 	// 3, 将函数需要的依赖从容器中注入
-	container.Invoke(PrintEnvOption)
-
-	// tips：需要特别注意的是，即使是provide简单的对象，也不能直接provide对象的地址，而是利用使用函数
-	// 返回对象，然后provide该函数。
-	// e.g：错误示范：
-	//		u = NewUser()
-	//		container.Provide(u) <=> container.Provider(NewUser()) :
-	//
-	// 	    正确示范：
-	//		func initUser() *User{return NewUser()}
-	//		container.Provide(initUser)
+	container.Invoke(printEnvOption)
+	container.Invoke(printApp)
 }
+
+// tips：需要特别注意的是，即使是provide简单的对象，也不能直接provide对象的地址，而是利用使用函数
+// 返回对象，然后provide该函数。
+// e.g：
+//		错误示范：
+//		u = NewUser()
+//		container.Provide(u) <=> container.Provider(NewUser()) :
+//
+// 	    正确示范：
+//		func initUser() *User{return NewUser()}
+//		container.Provide(initUser)
