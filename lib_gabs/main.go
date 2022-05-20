@@ -6,8 +6,7 @@ import (
 )
 
 func main() {
-	var jsonStringBytes []byte
-	jsonStringBytes = []byte(`{
+	jsonStringBytes := []byte(`{
 "info": {
   "name": {
 	"first": "lee",

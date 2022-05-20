@@ -1,0 +1,39 @@
+{
+  "user": {
+    "name": "test",
+    "age": 18,
+    "hobbies":["chess", "programming", "game"],
+    "items": [
+      {
+        "id": 1,
+        "name": "Apple",
+        "count": 2,
+        "price": 12
+      },
+      {
+        "id": 2,
+        "name": "Notebook",
+        "count": 10,
+        "price": 3
+      },
+      {
+        "id": 3,
+        "name": "Pencil",
+        "count": 5,
+        "price": 1
+      },
+      {
+        "id": 4,
+        "name": "Camera",
+        "count": 1,
+        "price": 1750
+      },
+      {
+        "id": null,
+        "name": "Invalid Item",
+        "count": 1,
+        "price": 12000
+      }
+    ]
+  }
+}
