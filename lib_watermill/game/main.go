@@ -1,24 +1,34 @@
 package main
 
 import (
+	"fmt"
 	"github.com/ThreeDotsLabs/watermill"
 	"github.com/ThreeDotsLabs/watermill/pubsub/gochannel"
 )
 
 func main() {
 
-	manager := gochannel.NewGoChannel(
-		gochannel.Config{},
-		watermill.NewStdLogger(false, false),
-	)
+	logger := watermill.NewStdLogger(false, false)
 
-	player := NewPlayer(manager)
-	d := NewDailyMission(manager) // 消费者dailyMission：订阅主题'playerLevelUp'
-	go d.OnPlayLevelUp()          // 消费者读取队列中的内容
-	a := NewAchievement(manager)  // 消费者achievement：订阅主题'playerLevelUp'
+	// channel
+	goChannel := gochannel.NewGoChannel(gochannel.Config{}, logger)
+
+	player := NewPlayer(goChannel)
+	d := NewDailyMission(goChannel) // 消费者dailyMission：订阅主题'playerLevelUp'
+	go d.OnPlayLevelUp()            // 消费者读取队列中的内容
+	a := NewAchievement(goChannel)  // 消费者achievement：订阅主题'playerLevelUp'
 	go a.OnPlayLevelUp()
 
-	player.LevelUp() // 生产者：生产产品
-	player.LevelUp()
-	player.LevelUp()
+	for {
+		var number int
+		n, _ := fmt.Scanln(&number)
+		if n > 0 {
+			switch number {
+			case 1:
+				player.LevelUp() // 生产者：生产产品
+			case 0:
+				return
+			}
+		}
+	}
 }

@@ -22,24 +22,6 @@ func InitOption() (*Option, error) {
 	return &opt, nil
 }
 
-type EnvOption struct {
-	AppName    string
-	AppCreator string
-	AppVersion string
-}
-
-type App struct {
-	Name    string
-	Version string
-}
-
-func InitApp(opt *EnvOption) *App {
-	return &App{
-		Name:    opt.AppName,
-		Version: opt.AppVersion,
-	}
-}
-
 func InitEnv(opt *Option) (*EnvOption, error) {
 	envMap, err := godotenv.Read(opt.EnvFile)
 	if err != nil {
@@ -51,6 +33,24 @@ func InitEnv(opt *Option) (*EnvOption, error) {
 		AppCreator: envMap["app_creator"],
 		AppVersion: envMap["app_version"],
 	}, nil
+}
+
+type EnvOption struct {
+	AppName    string
+	AppCreator string
+	AppVersion string
+}
+
+func InitApp(opt *EnvOption) *App {
+	return &App{
+		Name:    opt.AppName,
+		Version: opt.AppVersion,
+	}
+}
+
+type App struct {
+	Name    string
+	Version string
 }
 
 func printEnvOption(envOpt *EnvOption) {

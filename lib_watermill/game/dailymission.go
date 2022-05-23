@@ -7,6 +7,7 @@ import (
 	"log"
 )
 
+// 消费者
 type dailyMission struct {
 	msgQueue <-chan *message.Message
 }

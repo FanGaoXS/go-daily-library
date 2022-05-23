@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// Player 生产者
 type Player struct {
 	level     int
 	publisher message.Publisher

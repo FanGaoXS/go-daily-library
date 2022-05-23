@@ -7,6 +7,7 @@ import (
 	"log"
 )
 
+// 消费者
 type achievement struct {
 	msgQueue <-chan *message.Message
 }
