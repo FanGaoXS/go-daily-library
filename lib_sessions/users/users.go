@@ -34,7 +34,7 @@ func fields() []string {
 func SetUser(r *http.Request, user *User) {
 	session, err := store.Get(r, SessionKey)
 	if err != nil {
-		log.Fatal("set session error: ", err)
+		log.Fatal("set mission error: ", err)
 	}
 	session.Values["user"] = user
 }
@@ -42,11 +42,11 @@ func SetUser(r *http.Request, user *User) {
 func GetUser(r *http.Request) *User {
 	session, err := store.Get(r, SessionKey)
 	if err != nil {
-		log.Fatal("get session error: ", err)
+		log.Fatal("get mission error: ", err)
 	}
 	user, ok := session.Values["user"].(*User)
 	if !ok {
-		log.Fatal("get user from session error: ", err)
+		log.Fatal("get user from mission error: ", err)
 		return nil
 	}
 	return user

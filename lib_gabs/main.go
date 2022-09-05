@@ -9,7 +9,7 @@ func main() {
 	jsonStringBytes := []byte(`{
 "info": {
   "name": {
-	"first": "lee",
+	"quick_start": "lee",
 	"last": "darjun"
   },
   "age": 18,
@@ -22,8 +22,8 @@ func main() {
 	jsonObj, _ := gabs.ParseJSON(jsonStringBytes)
 	// 查询的三种方法：
 	// 1、Path()：以.分割
-	first := jsonObj.Path("info.name.first").Data().(string)
-	fmt.Println("first =", first)
+	first := jsonObj.Path("info.name.quick_start").Data().(string)
+	fmt.Println("quick_start =", first)
 	// 2、Search()：传多个参数，可以简写为S()
 	last := jsonObj.Search("info", "name", "last").Data().(string)
 	fmt.Println("last =", last)

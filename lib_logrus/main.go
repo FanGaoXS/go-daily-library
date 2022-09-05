@@ -17,7 +17,7 @@ func main() {
 	const logLevel = "info"
 	const isReportCaller = false
 	const logFormatter = "json"
-	logger := my_logger.NewLogger(logLevel, isReportCaller, logFormatter)
+	logger := my_logger.New(logLevel, isReportCaller, logFormatter)
 	logger.Info(u)
 	logger.Infof("user = %#v", u)
 }

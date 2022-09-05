@@ -1,4 +1,4 @@
-package my_logger
+package main
 
 import (
 	"log"
@@ -39,7 +39,7 @@ type MyLogger struct {
 	logger *logrus.Entry
 }
 
-func NewLogger(level string, isReportCaller bool, formatter string) MyLogger {
+func New(level string, isReportCaller bool, formatter string) MyLogger {
 	logger := logrus.New()
 	logger.SetLevel(logLevel(level))
 	logger.SetReportCaller(isReportCaller)

@@ -7,25 +7,20 @@
 package main
 
 import (
-	"github.com/google/wire"
+	"lib_wire/mission"
+	"lib_wire/monster"
+	"lib_wire/player"
+)
+
+import (
+	_ "lib_wire/env"
 )
 
 // Injectors from wire.go:
 
-func InitEndingA(args1 monsterArgs, args2 playerArgs) *EndingA {
-	mainPlayer := newPlayer(args2)
-	mainMonster := newMonster(args1)
-	endingA := NewEndingA(mainPlayer, mainMonster)
-	return endingA
+func InitMission() *mission.Mission {
+	playerPlayer := player.New()
+	monsterMonster := monster.New()
+	missionMission := mission.New(playerPlayer, monsterMonster)
+	return missionMission
 }
-
-func InitEndingB(args1 monsterArgs, args2 playerArgs) *EndingB {
-	mainPlayer := newPlayer(args2)
-	mainMonster := newMonster(args1)
-	endingB := NewEndingB(mainPlayer, mainMonster)
-	return endingB
-}
-
-// wire.go:
-
-var monsterPlayerSet = wire.NewSet(newPlayer, newMonster)

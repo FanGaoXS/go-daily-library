@@ -17,5 +17,4 @@ func main() {
 	fmt.Println("app.name =", envMap["app.name"])
 	fmt.Println("app.creator =", envMap["app.creator"])
 	fmt.Println("app.version =", envMap["app.version"])
-
 }

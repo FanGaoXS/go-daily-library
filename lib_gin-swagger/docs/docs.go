@@ -44,7 +44,7 @@ var doc = `{
                         "description": "用户信息",
                         "name": "user",
                         "in": "body",
-                        "required": true,
+                        "required_default": true,
                         "schema": {
                             "$ref": "#/definitions/model.User"
                         }
@@ -73,7 +73,7 @@ var doc = `{
                         "description": "用户名",
                         "name": "username",
                         "in": "query",
-                        "required": true
+                        "required_default": true
                     }
                 ],
                 "responses": {
@@ -90,7 +90,7 @@ var doc = `{
     "definitions": {
         "model.User": {
             "type": "object",
-            "required": [
+            "required_default": [
                 "password",
                 "username"
             ],

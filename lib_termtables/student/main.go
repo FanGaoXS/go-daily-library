@@ -16,7 +16,7 @@ func main() {
 	}
 	t := termtables.CreateTable()
 
-	// parse the first element of the list with fields as the header of table
+	// parse the quick_start element of the list with fields as the header of table
 	fields := Fields(studentList[0])
 	t.AddHeaders(fields...)
 	for _, s := range studentList {
@@ -34,7 +34,7 @@ func main() {
 	}
 	t1 := termtables.CreateTable()
 
-	// parse the first element of the list with fields as the header of table
+	// parse the quick_start element of the list with fields as the header of table
 	fields = Fields(teacherList[0])
 	t1.AddHeaders(fields...)
 	for _, t := range teacherList {
