@@ -7,20 +7,17 @@
 package main
 
 import (
-	"lib_wire/mission"
-	"lib_wire/monster"
-	"lib_wire/player"
-)
-
-import (
-	_ "lib_wire/env"
+	"lib_wire/quick_start/environment"
+	"lib_wire/quick_start/model/mission"
+	"lib_wire/quick_start/model/monster"
+	"lib_wire/quick_start/model/player"
 )
 
 // Injectors from wire.go:
 
-func InitMission() *mission.Mission {
-	playerPlayer := player.New()
-	monsterMonster := monster.New()
+func InitMission(env *environment.Env) *mission.Mission {
+	playerPlayer := player.New(env)
+	monsterMonster := monster.New(env)
 	missionMission := mission.New(playerPlayer, monsterMonster)
 	return missionMission
 }
