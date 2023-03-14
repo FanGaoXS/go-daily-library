@@ -29,6 +29,7 @@ func main() {
 	{
 		g2.GET("/authorize", gitee.Authorize)
 		g2.GET("/oauth/callback", gitee.Callback)
+		g2.GET("/oauth/refresh_token", gitee.RefreshToken)
 		g2.GET("/userinfo", gitee.Userinfo)
 	}
 
@@ -36,6 +37,7 @@ func main() {
 	{
 		g3.GET("/authorize", gitlab.Authorize)
 		g3.GET("/oauth/callback", gitlab.Callback)
+		g3.GET("/oauth/refresh_token", gitlab.RefreshToken)
 		g3.GET("/userinfo", gitlab.Userinfo)
 	}
 

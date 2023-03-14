@@ -44,16 +44,40 @@ func Callback(c *gin.Context) {
 	code := c.Query("code")
 	u, _ := url.Parse("https://gitlab.com/oauth/token")
 	values := u.Query()
-	values.Add("client_id", ClientId)
-	values.Add("client_secret", ClientSecret)
-	values.Add("code", code)
-	values.Add("grant_type", "authorization_code")
-	values.Add("redirect_uri", "http://localhost:8090/gitlab/oauth/callback")
+	values.Set("client_id", ClientId)
+	values.Set("client_secret", ClientSecret)
+	values.Set("code", code)
+	values.Set("grant_type", "authorization_code")
+	values.Set("redirect_uri", "http://localhost:8090/gitlab/oauth/callback")
 	u.RawQuery = values.Encode()
 
 	client := http.DefaultClient
 	req, _ := http.NewRequest(http.MethodPost, u.String(), nil)
-	req.Header.Add("accept", "application/json")
+	req.Header.Set("accept", "application/json")
+	res, _ := client.Do(req)
+	defer res.Body.Close()
+	bytes, _ := ioutil.ReadAll(res.Body)
+	fmt.Println(string(bytes))
+
+	obj := make(map[string]interface{})
+	json.Unmarshal(bytes, &obj)
+	c.JSON(http.StatusOK, obj)
+	return
+}
+
+func RefreshToken(c *gin.Context) {
+	refreshToken := c.Query("refresh_token")
+	u, _ := url.Parse("https://gitlab.com/oauth/token")
+	values := u.Query()
+	values.Set("client_id", ClientId)
+	values.Set("client_secret", ClientSecret)
+	values.Set("refresh_token", refreshToken)
+	values.Set("grant_type", "refresh_token")
+	values.Set("redirect_uri", "http://localhost:8090/gitlab/oauth/callback")
+	u.RawQuery = values.Encode()
+
+	client := http.DefaultClient
+	req, _ := http.NewRequest(http.MethodPost, u.String(), nil)
 	res, _ := client.Do(req)
 	defer res.Body.Close()
 	bytes, _ := ioutil.ReadAll(res.Body)
@@ -71,7 +95,7 @@ func Userinfo(c *gin.Context) {
 
 	client := http.DefaultClient
 	req, _ := http.NewRequest(http.MethodGet, u.String(), nil)
-	req.Header.Add("Authorization", "Bearer "+token)
+	req.Header.Set("Authorization", "Bearer "+token)
 	res, _ := client.Do(req)
 	defer res.Body.Close()
 	bytes, _ := ioutil.ReadAll(res.Body)

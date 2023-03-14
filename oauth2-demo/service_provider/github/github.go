@@ -28,8 +28,8 @@ type UserInfo struct {
 func Authorize(c *gin.Context) {
 	u, _ := url.Parse("https://github.com/login/oauth/authorize")
 	values := u.Query()
-	values.Add("client_id", ClientId)
-	values.Add("redirect_uri", "http://localhost:8090/github/oauth/callback")
+	values.Set("client_id", ClientId)
+	values.Set("redirect_uri", "http://localhost:8090/github/oauth/callback")
 	u.RawQuery = values.Encode()
 
 	c.Redirect(http.StatusMovedPermanently, u.String())
@@ -44,14 +44,14 @@ func Callback(c *gin.Context) {
 	code := c.Query("code")
 	u, _ := url.Parse("https://github.com/login/oauth/access_token")
 	values := u.Query()
-	values.Add("client_id", ClientId)
-	values.Add("client_secret", ClientSecret)
-	values.Add("code", code)
+	values.Set("client_id", ClientId)
+	values.Set("client_secret", ClientSecret)
+	values.Set("code", code)
 	u.RawQuery = values.Encode()
 
 	client := http.DefaultClient
 	req, _ := http.NewRequest(http.MethodPost, u.String(), nil)
-	req.Header.Add("accept", "application/json")
+	req.Header.Set("accept", "application/json")
 	res, _ := client.Do(req)
 	defer res.Body.Close()
 	bytes, _ := ioutil.ReadAll(res.Body)
@@ -71,8 +71,8 @@ func Userinfo(c *gin.Context) {
 
 	client := http.DefaultClient
 	req, _ := http.NewRequest(http.MethodGet, u.String(), nil)
-	req.Header.Add("accept", "application/json")
-	req.Header.Add("Authorization", "token "+token)
+	req.Header.Set("accept", "application/json")
+	req.Header.Set("Authorization", "token "+token)
 	res, _ := client.Do(req)
 	defer res.Body.Close()
 	bytes, _ := ioutil.ReadAll(res.Body)
